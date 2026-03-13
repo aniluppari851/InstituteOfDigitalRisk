@@ -27,6 +27,8 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 72px; /* Accounts for the sticky header height */
 }
 
 body {
@@ -175,10 +177,15 @@ body {
     position: relative;
     background-color: var(--bg-darker);
     color: var(--white);
-    padding: 160px 20px 140px;
+    padding: 80px 20px;
     text-align: center;
     overflow: hidden;
     z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
 }
 
 /* Background glow effect behind hero content */
@@ -247,7 +254,12 @@ body {
 
 /* --- Global Section Padding & Headers --- */
 section {
-    padding: 100px 0;
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
 }
 
 .section-header {
@@ -508,6 +520,7 @@ section {
     text-align: center;
     padding: 40px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    scroll-snap-align: start;
 }
 
 /* --- Mobile Nav Toggle (Hidden on large screens) --- */
