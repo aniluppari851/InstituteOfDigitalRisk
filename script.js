@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); // Stop form from triggering a page reload
             
             // Inform the user
-            alert('Thank you for reaching out to the Institute of Digital Risk! Your message has been successfully received.');
+            alert('Message submitted successfully!');
             
             // Clear all text inputs
             contactForm.reset(); 
@@ -98,6 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start observing each animated element
     animatedElements.forEach(el => {
         scrollObserver.observe(el);
+    });
+
+    // --- 5. Navbar Scroll Effect ---
+    window.addEventListener("scroll", function() {
+        const header = document.querySelector(".header");
+        if (header) {
+            header.classList.toggle("scrolled", window.scrollY > 50);
+        }
     });
 
 });
