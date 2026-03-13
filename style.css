@@ -1,0 +1,588 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Enhanced Color Palette */
+    --primary: #FF6600;
+    --primary-light: #ff8533;
+    --primary-glow: rgba(255, 102, 0, 0.3);
+
+    --bg-dark: #0f1115;
+    --bg-darker: #0a0b0e;
+    --bg-light: #f8f9fc;
+
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --white: #ffffff;
+
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Base & Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
+    line-height: 1.7;
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- 1. Header & Glassmorphism Navigation --- */
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    /* very subtle border */
+    transition: all 0.3s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--bg-dark);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links li a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+/* Animated underline on hover */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links li a:hover {
+    color: var(--primary);
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* --- Reusable Premium Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 50px;
+    /* Pill shape */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px var(--primary-glow);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-left: 15px;
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--bg-dark);
+    transform: translateY(-3px);
+}
+
+/* --- 2. Hero Section --- */
+.hero {
+    position: relative;
+    background-color: var(--bg-darker);
+    color: var(--white);
+    padding: 160px 20px 140px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Background glow effect behind hero content */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 850px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 102, 0, 0.1);
+    border: 1px solid rgba(255, 102, 0, 0.2);
+    color: var(--primary);
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: #9ca3af;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* --- Global Section Padding & Headers --- */
+section {
+    padding: 100px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--bg-dark);
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- 3. About Section --- */
+.about {
+    background-color: var(--white);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.about-content p {
+    margin-bottom: 24px;
+}
+
+.about-content p strong {
+    color: var(--bg-dark);
+    font-weight: 600;
+}
+
+/* --- 4. Services Section (Grid) --- */
+.services {
+    background-color: var(--bg-light);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--white);
+    padding: 50px 40px;
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* bouncy ease */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Animated top border on cards */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+/* Effects applied when card is hovered */
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    /* Darker soft shadow */
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 102, 0, 0.1);
+    color: var(--primary);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-icon {
+    background: var(--primary);
+    color: var(--white);
+    transform: scale(1.1) rotate(5deg);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bg-dark);
+    margin-bottom: 16px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* --- 5. Community Section --- */
+.community {
+    background-color: var(--white);
+}
+
+.community-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.community-list {
+    list-style: none;
+    max-width: 800px;
+    width: 100%;
+}
+
+.community-list li {
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.community-list li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary);
+}
+
+.li-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.li-content h4 {
+    font-size: 1.2rem;
+    color: var(--bg-dark);
+    margin-bottom: 8px;
+}
+
+.li-content p {
+    color: var(--text-muted);
+}
+
+/* --- 6. Contact Section --- */
+.contact {
+    background-color: var(--bg-dark);
+    color: var(--white);
+    position: relative;
+}
+
+.contact .section-header h2 {
+    color: var(--white);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-darker);
+    padding: 50px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* very subtle dark border */
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #e5e7eb;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    /* slight translucent grey */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #6b7280;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.1);
+    /* Glow border effect */
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+}
+
+/* --- 7. Footer --- */
+.footer {
+    background-color: #050608;
+    color: #9ca3af;
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Mobile Nav Toggle (Hidden on large screens) --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--bg-dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* --- Responsive Layout Rules --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Transform nav into a sliding panel */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 400px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        right: 0;
+        /* Slide in */
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .nav-links li a {
+        font-size: 1.5rem;
+    }
+
+    .hero {
+        padding: 120px 20px 100px;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .contact-form {
+        padding: 30px 20px;
+    }
+}
+
+/* --- 8. Scroll Animations --- */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered transition delays for grouped elements */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
